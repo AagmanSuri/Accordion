@@ -1,26 +1,23 @@
 import React, { useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-const Question = ({ questinsData }) => {
-  const [btnName, setBtnName] = useState("Plus");
+const Question = ({ title, info }) => {
   const [isOpen, setIsOpen] = useState(false);
+
   const btnHandeler = (id) => {
     console.log(id);
     setIsOpen(!isOpen);
   };
 
   return (
-    <>
-      <h2>question component</h2>
-      {questinsData.map((question, index) => {
-        return (
-          <div key={index}>
-            <h3>{question.title}</h3>
-            {isOpen || <p>{question.info}</p>}
-            <button onClick={() => btnHandeler(question.id)}>{btnName}</button>
-          </div>
-        );
-      })}
-    </>
+    <article className="question">
+      <header>
+        <h4>{title}</h4>
+        <button className="btn" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <AiOutlineMinus /> : <AiOutlinePlus />}
+        </button>
+      </header>
+      {isOpen && <p>{info}</p>}
+    </article>
   );
 };
 

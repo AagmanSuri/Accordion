@@ -4,10 +4,16 @@ import SingleQuestion from "./Question";
 function App() {
   const [questinsData, setQuestionData] = useState(data);
   return (
-    <>
-      <h2>accordion project setup</h2>
-      <SingleQuestion questinsData={questinsData} />
-    </>
+    <main>
+      <div className="container">
+        <h3>Question and answer about Login</h3>
+        <section className="info">
+          {questinsData.map((question) => {
+            return <SingleQuestion key={question.id} {...question} />;
+          })}
+        </section>
+      </div>
+    </main>
   );
 }
 
